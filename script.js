@@ -1,69 +1,119 @@
+// Инициализация при загрузке
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Магический сайт загружен! 🎂✨');
+    
+    // Скрываем основной сайт при загрузке
+    document.getElementById('mainSite').style.display = 'none';
+    
+    // Добавляем обработчик клика на свечу
+    const candle = document.querySelector('.candle');
+    const flame = document.querySelector('.flame');
+    
+    candle.addEventListener('click', makeWish);
+    flame.addEventListener('click', makeWish);
+    
+    // Добавляем обработчики для магических предметов
+    const magicItems = document.querySelectorAll('.magic-item');
+    magicItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Добавляем обработчик для совы (падающие листья)
+    const owlContainer = document.querySelector('.owl-container');
+    owlContainer.addEventListener('click', createLeaves);
+});
+
 // Функция для задувания свечи и перехода к сайту
 function makeWish(event) {
-    event.stopPropagation(); // Чтобы не срабатывал клик на торт
+    event.stopPropagation();
     
     const flame = document.querySelector('.flame');
     const candle = document.querySelector('.candle');
     
-    // Анимация задувания свечи
+    // Останавливаем анимацию мерцания
     flame.style.animation = 'none';
+    
+    // Анимация задувания
+    flame.style.transition = 'all 0.5s ease';
     flame.style.opacity = '0';
-    flame.style.transform = 'translateX(-50%) scale(0.5)';
+    flame.style.transform = 'translateX(-50%) scale(0.1)';
     
-    // Добавляем дымок
-    const smoke = document.createElement('div');
-    smoke.style.cssText = `
-        position: absolute;
-        top: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 5px;
-        height: 5px;
-        background: #888;
-        border-radius: 50%;
-        animation: smoke 2s ease-out forwards;
-    `;
-    candle.appendChild(smoke);
+    // Создаем несколько дымков
+    createSmoke(candle, 3);
     
-    // Добавляем стили для дымка
-    const smokeStyle = document.createElement('style');
-    smokeStyle.textContent = `
-        @keyframes smoke {
-            0% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-50px) scale(3);
-            }
-        }
-    `;
-    document.head.appendChild(smokeStyle);
-    
-    setTimeout(startCelebration, 1000);
-}
-
-function startCelebration() {
-    const cakeScreen = document.getElementById('cakeScreen');
-    const mainSite = document.getElementById('mainSite');
-    
-    // Анимация исчезновения торта
-    cakeScreen.style.opacity = '0';
-    cakeScreen.style.transition = 'opacity 1s ease';
-    
+    // Ждем окончания анимации и переходим к сайту
     setTimeout(() => {
-        cakeScreen.style.display = 'none';
-        mainSite.style.display = 'block';
+        const cakeScreen = document.getElementById('cakeScreen');
+        const mainSite = document.getElementById('mainSite');
         
-        // Добавляем небольшую анимацию появления основного сайта
-        mainSite.style.opacity = '0';
-        mainSite.style.transition = 'opacity 0.5s ease';
+        // Плавно скрываем торт
+        cakeScreen.style.transition = 'opacity 1s ease';
+        cakeScreen.style.opacity = '0';
         
         setTimeout(() => {
-            mainSite.style.opacity = '1';
-        }, 100);
-    }, 1000);
+            cakeScreen.style.display = 'none';
+            mainSite.style.display = 'block';
+            
+            // Плавно показываем основной сайт
+            setTimeout(() => {
+                mainSite.style.opacity = '1';
+            }, 50);
+        }, 1000);
+    }, 800);
+}
+
+// Функция создания дымка
+function createSmoke(candle, count) {
+    for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+            const smoke = document.createElement('div');
+            smoke.className = 'smoke';
+            smoke.style.cssText = `
+                position: absolute;
+                top: -20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 8px;
+                height: 8px;
+                background: rgba(136, 136, 136, 0.8);
+                border-radius: 50%;
+                animation: smokeRise 2s ease-out forwards;
+            `;
+            candle.appendChild(smoke);
+            
+            // Удаляем дымок после анимации
+            setTimeout(() => {
+                if (smoke.parentNode) {
+                    smoke.remove();
+                }
+            }, 2000);
+        }, i * 200);
+    }
+    
+    // Добавляем стили для дымка если их еще нет
+    if (!document.querySelector('#smokeStyles')) {
+        const smokeStyle = document.createElement('style');
+        smokeStyle.id = 'smokeStyles';
+        smokeStyle.textContent = `
+            @keyframes smokeRise {
+                0% {
+                    opacity: 0.8;
+                    transform: translateX(-50%) translateY(0) scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateX(${Math.random() * 40 - 20}px) translateY(-80px) scale(2.5);
+                }
+            }
+        `;
+        document.head.appendChild(smokeStyle);
+    }
 }
 
 // Функция для создания падающих листьев при клике на сову
@@ -71,33 +121,36 @@ function createLeaves() {
     const leavesContainer = document.getElementById('leavesContainer');
     const colors = ['#d4af37', '#8b7511', '#b8860b', '#daa520'];
     
-    // Создаем 15 листьев
-    for (let i = 0; i < 15; i++) {
-        const leaf = document.createElement('div');
-        leaf.className = 'leaf';
-        
-        const size = Math.random() * 15 + 10;
-        const duration = Math.random() * 3 + 2;
-        const delay = Math.random() * 2;
-        
-        leaf.style.cssText = `
-            left: ${Math.random() * 100}vw;
-            top: -30px;
-            width: ${size}px;
-            height: ${size}px;
-            background: linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]}, ${colors[Math.floor(Math.random() * colors.length)]});
-            animation-duration: ${duration}s;
-            animation-delay: ${delay}s;
-        `;
-        
-        leavesContainer.appendChild(leaf);
-        
-        // Удаляем лист после анимации
+    // Создаем 12 листьев
+    for (let i = 0; i < 12; i++) {
         setTimeout(() => {
-            if (leaf.parentNode) {
-                leaf.remove();
-            }
-        }, (duration + delay) * 1000);
+            const leaf = document.createElement('div');
+            leaf.className = 'leaf';
+            
+            const size = Math.random() * 15 + 10;
+            const duration = Math.random() * 3 + 2;
+            const delay = Math.random();
+            const left = Math.random() * 100;
+            
+            leaf.style.cssText = `
+                left: ${left}vw;
+                top: -30px;
+                width: ${size}px;
+                height: ${size}px;
+                background: linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]}, ${colors[Math.floor(Math.random() * colors.length)]});
+                animation: fall ${duration}s linear ${delay}s forwards;
+                opacity: 0.8;
+            `;
+            
+            leavesContainer.appendChild(leaf);
+            
+            // Удаляем лист после анимации
+            setTimeout(() => {
+                if (leaf.parentNode) {
+                    leaf.remove();
+                }
+            }, (duration + delay) * 1000);
+        }, i * 150);
     }
 }
 
@@ -144,8 +197,8 @@ function hideEasterEgg() {
 }
 
 // Добавляем CSS для анимации текста
-const style = document.createElement('style');
-style.textContent = `
+const textAppearStyle = document.createElement('style');
+textAppearStyle.textContent = `
     @keyframes textAppear {
         0% {
             opacity: 0;
@@ -157,21 +210,4 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style);
-
-// Инициализация при загрузке
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Магический сайт загружен! 🎂✨');
-    
-    // Добавляем обработчики для магических предметов
-    const magicItems = document.querySelectorAll('.magic-item');
-    magicItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
-});
+document.head.appendChild(textAppearStyle);
