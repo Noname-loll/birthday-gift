@@ -12,16 +12,15 @@
     <div id="cakeScreen" class="cake-screen">
         <div class="cake-container">
             <div class="birthday-cake" onclick="makeWish()">
+                <div class="plate"></div>
+                <div class="cake">
+                    <div class="layer bottom"></div>
+                    <div class="layer middle"></div>
+                    <div class="layer top"></div>
+                </div>
                 <div class="candle">
                     <div class="flame"></div>
                 </div>
-                <div class="cake">
-                    <div class="layer top"></div>
-                    <div class="layer middle"></div>
-                    <div class="layer bottom"></div>
-                    <div class="decoration"></div>
-                </div>
-                <div class="plate"></div>
             </div>
             <div class="cake-message">
                 <h2>С Днём Рождения, Катя!</h2>
@@ -34,27 +33,33 @@
 
     <!-- Основной сайт -->
     <div id="mainSite" class="main-site">
-        <!-- Остальной код без изменений -->
+        <!-- Фон -->
         <div class="background"></div>
         
+        <!-- Падающие листья -->
         <div id="leavesContainer" class="leaves-container"></div>
         
+        <!-- Виньетки по углам -->
         <div class="corner-decor top-left"></div>
         <div class="corner-decor top-right"></div>
         <div class="corner-decor bottom-left"></div>
         <div class="corner-decor bottom-right"></div>
         
+        <!-- Сова и ромб Симс -->
         <div class="owl-container" onclick="createLeaves()">
             <div class="sims-diamond"></div>
             <div class="owl">🦉</div>
         </div>
 
+        <!-- Основной контент -->
         <div class="container">
+            <!-- Hero Section -->
             <section class="hero">
                 <h1 class="main-title">С Днем Рождения, <span class="name">Катя</span>!</h1>
                 <p class="subtitle">Этот сайт заколдован магией Гарри Поттера и управляется волей Симсов...</p>
             </section>
 
+            <!-- Интерактивный свиток -->
             <section class="scroll-section">
                 <h2 class="scroll-title">Катя, силой магии и Симс, твоя судьба на этот год!</h2>
                 
@@ -66,6 +71,7 @@
                     </div>
                 </div>
 
+                <!-- Магические предметы -->
                 <div class="magic-items">
                     <div class="magic-item" onclick="showPrediction('wand')">
                         <div class="item-icon wand"></div>
@@ -92,6 +98,7 @@
                 <p class="instruction">Коснись магического предмета, чтобы узнать свое предсказание!</p>
             </section>
 
+            <!-- Поздравительный раздел -->
             <section class="congratulations">
                 <div class="letter">
                     <h2>От всего сердца...</h2>
@@ -109,12 +116,14 @@
             </section>
         </div>
 
+        <!-- Футер -->
         <footer class="footer">
             <p>Сайт создан с использованием заклинания 'Винггардиум Левиоса' и бессонных ночей в стиле 'Симс без сохранения'.</p>
             <p class="copyright">© Таня, 2024</p>
             <div class="easter-egg" onclick="showEasterEgg()">💀</div>
         </footer>
 
+        <!-- Пасхалка -->
         <div id="easterEgg" class="easter-egg-modal">
             <div class="easter-egg-content">
                 <p>Сим умер от смеха, пока создавал этот сайт!</p>
@@ -125,4 +134,4 @@
 
     <script src="script.js"></script>
 </body>
-</html>
+    </html>
