@@ -7,14 +7,72 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Показываем экран с тортом
     document.getElementById('cakeScreen').style.display = 'flex';
+    
+    // Добавляем подсказку про встряхивание
+    addShakeHint();
+    
+    // Инициализируем обработчик встряхивания
+    initShakeDetection();
 });
+
+// Добавляем подсказку про встряхивание
+function addShakeHint() {
+    const cakeMessage = document.querySelector('.cake-message');
+    const shakeHint = document.createElement('p');
+    shakeHint.className = 'shake-hint';
+    shakeHint.textContent = 'Или встряхни телефон, чтобы задуть свечу! 📱💨';
+    cakeMessage.appendChild(shakeHint);
+}
+
+// Обнаружение встряхивания телефона
+let lastShakeTime = 0;
+let shakeCount = 0;
+
+function initShakeDetection() {
+    if (window.DeviceMotionEvent) {
+        let lastX, lastY, lastZ;
+        let threshold = 15; // чувствительность встряхивания
+        
+        window.addEventListener('devicemotion', function(event) {
+            const acceleration = event.accelerationIncludingGravity;
+            const currentTime = new Date().getTime();
+            
+            if ((currentTime - lastShakeTime) > 1000) { // не чаще чем раз в секунду
+                const deltaX = Math.abs(lastX - acceleration.x);
+                const deltaY = Math.abs(lastY - acceleration.y);
+                const deltaZ = Math.abs(lastZ - acceleration.z);
+                
+                if ((deltaX > threshold && deltaY > threshold) || 
+                    (deltaX > threshold && deltaZ > threshold) || 
+                    (deltaY > threshold && deltaZ > threshold)) {
+                    
+                    shakeCount++;
+                    if (shakeCount >= 2) { // нужно 2 встряхивания
+                        makeWish();
+                        shakeCount = 0;
+                    }
+                    lastShakeTime = currentTime;
+                }
+                
+                lastX = acceleration.x;
+                lastY = acceleration.y;
+                lastZ = acceleration.z;
+            }
+        });
+    } else {
+        console.log('DeviceMotion не поддерживается');
+    }
+}
 
 // Функция для задувания свечи
 function makeWish() {
     const flame = document.querySelector('.flame');
     const cake = document.querySelector('.birthday-cake');
     
-    // Отключаем повторные клики
+    // Если уже задували, выходим
+    if (cake.style.pointerEvents === 'none') return;
+    
+    // Отключаем повторные клики/встряхивания
     cake.style.pointerEvents = 'none';
     
     // Останавливаем анимацию мерцания
@@ -24,6 +82,7 @@ function makeWish() {
     flame.style.transition = 'all 0.5s ease';
     flame.style.opacity = '0';
     flame.style.transform = 'translateX(-50%) scale(0.1)';
+    flame.style.boxShadow = '0 0 5px rgba(255, 107, 53, 0.3)';
     
     // Показываем дым
     createSmoke();
@@ -48,18 +107,18 @@ function makeWish() {
 function createSmoke() {
     const candle = document.querySelector('.candle');
     
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 8; i++) { // Больше дыма
         setTimeout(() => {
             const smoke = document.createElement('div');
             smoke.style.cssText = `
                 position: absolute;
-                top: -30px;
+                top: -25px;
                 left: 50%;
-                width: 8px;
-                height: 8px;
-                background: #888;
+                width: 6px;
+                height: 6px;
+                background: #666;
                 border-radius: 50%;
-                opacity: 0.6;
+                opacity: 0.7;
                 transform: translateX(-50%);
                 animation: smokeRise 2s ease-out forwards;
             `;
@@ -72,7 +131,7 @@ function createSmoke() {
                     smoke.parentNode.removeChild(smoke);
                 }
             }, 2000);
-        }, i * 200);
+        }, i * 150);
     }
 }
 
@@ -82,10 +141,14 @@ style.textContent = `
     @keyframes smokeRise {
         0% {
             transform: translateX(-50%) translateY(0) scale(1);
-            opacity: 0.6;
+            opacity: 0.7;
+        }
+        50% {
+            transform: translateX(${Math.random() * 40 - 20}px) translateY(-50px) scale(2);
+            opacity: 0.4;
         }
         100% {
-            transform: translateX(-50%) translateY(-100px) scale(3);
+            transform: translateX(${Math.random() * 60 - 30}px) translateY(-100px) scale(3);
             opacity: 0;
         }
     }
@@ -250,33 +313,4 @@ function createLeaves() {
 // Создание магических частиц при загрузке
 function createMagicParticles() {
     setTimeout(() => {
-        createParticles('#d4af37');
-    }, 1000);
-    
-    setTimeout(() => {
-        createParticles('#800020');
-    }, 2000);
-}
-
-// Пасхалка
-function showEasterEgg() {
-    document.getElementById('easterEgg').style.display = 'flex';
-}
-
-function hideEasterEgg() {
-    document.getElementById('easterEgg').style.display = 'none';
-}
-
-// Добавляем обработчики для магических предметов
-document.addEventListener('DOMContentLoaded', function() {
-    const magicItems = document.querySelectorAll('.magic-item');
-    magicItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.1)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-});
+        create
