@@ -8,98 +8,124 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Lora:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Фон -->
-    <div class="background"></div>
-    
-    <!-- Виньетки по углам -->
-    <div class="corner-decor top-left"></div>
-    <div class="corner-decor top-right"></div>
-    <div class="corner-decor bottom-left"></div>
-    <div class="corner-decor bottom-right"></div>
-    
-    <!-- Сова и ромб Симс -->
-    <div class="owl-container">
-        <div class="sims-diamond"></div>
-        <div class="owl"></div>
+    <!-- Экран с тортом -->
+    <div id="cakeScreen" class="cake-screen">
+        <div class="cake-container">
+            <div class="cake" onclick="startCelebration()">
+                <div class="cake-body">
+                    <div class="cake-top"></div>
+                    <div class="cake-middle"></div>
+                    <div class="cake-bottom"></div>
+                </div>
+                <div class="candle" onclick="makeWish(event)">
+                    <div class="flame"></div>
+                </div>
+            </div>
+            <div class="cake-message">
+                <h2>С Днём Рождения, Катя!</h2>
+                <p>Загадай желание и задуй свечу</p>
+            </div>
+        </div>
     </div>
 
-    <!-- Основной контент -->
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1 class="main-title">С Днем Рождения, <span class="name">Катя</span>!</h1>
-            <p class="subtitle">Этот сайт заколдован магией Гарри Поттера и управляется волей Симсов...</p>
-        </section>
+    <!-- Основной сайт (скрыт до нажатия на торт) -->
+    <div id="mainSite" class="main-site" style="display: none;">
+        <!-- Фон -->
+        <div class="background"></div>
+        
+        <!-- Падающие листья (можно убрать) -->
+        <div id="leavesContainer" class="leaves-container"></div>
+        
+        <!-- Виньетки по углам -->
+        <div class="corner-decor top-left"></div>
+        <div class="corner-decor top-right"></div>
+        <div class="corner-decor bottom-left"></div>
+        <div class="corner-decor bottom-right"></div>
+        
+        <!-- Сова и ромб Симс -->
+        <div class="owl-container" onclick="createLeaves()">
+            <div class="sims-diamond"></div>
+            <div class="owl"></div>
+        </div>
 
-        <!-- Интерактивный свиток -->
-        <section class="scroll-section">
-            <h2 class="scroll-title">Ууу Катя, силой магии и симс, твоё предсказание на этот год!</h2>
-            
-            <div class="scroll-container">
-                <div class="magic-scroll" id="magicScroll">
-                    <div class="scroll-content">
-                        <p class="prediction-text" id="predictionText">Выбери магический предмет, чтобы узнать предсказание!</p>
+        <!-- Основной контент -->
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1 class="main-title">С Днем Рождения, <span class="name">Катя</span>!</h1>
+                <p class="subtitle">Этот сайт заколдован магией Гарри Поттера и управляется волей Симсов...</p>
+            </section>
+
+            <!-- Интерактивный свиток -->
+            <section class="scroll-section">
+                <h2 class="scroll-title">Катя, силой магии и Симс, твоя судьба на этот год!</h2>
+                
+                <div class="scroll-container">
+                    <div class="magic-scroll" id="magicScroll">
+                        <div class="scroll-content">
+                            <p class="prediction-text" id="predictionText">Выбери магический предмет, чтобы узнать предсказание!</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Магические предметы -->
-            <div class="magic-items">
-                <div class="magic-item" onclick="showPrediction('wand')">
-                    <div class="item-icon wand"></div>
-                    <span>Волшебная палочка</span>
-                </div>
-                <div class="magic-item" onclick="showPrediction('mirror')">
-                    <div class="item-icon mirror"></div>
-                    <span>Зеркальце</span>
-                </div>
-                <div class="magic-item" onclick="showPrediction('crystal')">
-                    <div class="item-icon crystal"></div>
-                    <span>Магический кристалл</span>
-                </div>
-                <div class="magic-item" onclick="showPrediction('potion')">
-                    <div class="item-icon potion"></div>
-                    <span>Зелье удачи</span>
-                </div>
-                <div class="magic-item" onclick="showPrediction('blueprint')">
-                    <div class="item-icon blueprint"></div>
-                    <span>План Симс</span>
-                </div>
-            </div>
-            
-            <p class="instruction">Коснись магического предмета, чтобы узнать свое предсказание!</p>
-        </section>
-
-        <!-- Поздравительный раздел -->
-        <section class="congratulations">
-            <div class="letter">
-                <h2>От всего сердца...</h2>
-                <div class="letter-content">
-                    <p>Моя дорогая <strong>Катя</strong>, в этот день твой персональный 'создатель' повысил твой уровень мудрости, красоты и крутости до максимального!</p>
-                    <p>Пусть твоя шкала 'счастье' всегда будет зеленой, а жизненная 'мана' никогда не кончается. Пусть каждый день приносит новые квесты с щедрыми наградами, а твой инвентарь всегда полнен редкими артефактами радости.</p>
-                    <p>Пусть магия сопровождает тебя в каждом начинании, а симсовское вдохновение никогда не опускается ниже максимума!</p>
-                    <div class="signature">
-                        <p>С любовью и магией,</p>
-                        <p class="signature-name">Таня</p>
-                        <p class="date">03.10.25</p>
+                <!-- Магические предметы -->
+                <div class="magic-items">
+                    <div class="magic-item" onclick="showPrediction('wand')">
+                        <div class="item-icon wand"></div>
+                        <span>Волшебная палочка</span>
+                    </div>
+                    <div class="magic-item" onclick="showPrediction('mirror')">
+                        <div class="item-icon mirror"></div>
+                        <span>Зеркальце</span>
+                    </div>
+                    <div class="magic-item" onclick="showPrediction('crystal')">
+                        <div class="item-icon crystal"></div>
+                        <span>Магический кристалл</span>
+                    </div>
+                    <div class="magic-item" onclick="showPrediction('potion')">
+                        <div class="item-icon potion"></div>
+                        <span>Зелье удачи</span>
+                    </div>
+                    <div class="magic-item" onclick="showPrediction('blueprint')">
+                        <div class="item-icon blueprint"></div>
+                        <span>План Симс</span>
                     </div>
                 </div>
+                
+                <p class="instruction">Коснись магического предмета, чтобы узнать свое предсказание!</p>
+            </section>
+
+            <!-- Поздравительный раздел -->
+            <section class="congratulations">
+                <div class="letter">
+                    <h2>От всего сердца...</h2>
+                    <div class="letter-content">
+                        <p>Моя дорогая <strong>Катя</strong>, в этот день твой персональный 'создатель' повысил твой уровень мудрости, красоты и крутости до максимального!</p>
+                        <p>Пусть твоя шкала 'Счастья' всегда будет зеленой, а жизненная 'мана' никогда не кончается. Пусть каждый день приносит новые квесты с щедрыми наградами, а твой инвентарь всегда полнен редкими артефактами радости.</p>
+                        <p>Пусть магия сопровождает тебя в каждом начинании, а симовское вдохновение никогда не опускается ниже максимума!</p>
+                        <div class="signature">
+                            <p>С любовью и магией,</p>
+                            <p class="signature-name">Таня</p>
+                            <p class="date">2024</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Футер -->
+        <footer class="footer">
+            <p>Сайт создан с использованием заклинания 'Винггардиум Левиоса' и бессонных ночей в стиле 'Симс без сохранения'.</p>
+            <p class="copyright">© Таня, 2024</p>
+            <div class="easter-egg" onclick="showEasterEgg()">💀</div>
+        </footer>
+
+        <!-- Пасхалка -->
+        <div id="easterEgg" class="easter-egg-modal">
+            <div class="easter-egg-content">
+                <p>Сим умер от смеха, пока создавал этот сайт!</p>
+                <button onclick="hideEasterEgg()">Вернуться к магии</button>
             </div>
-        </section>
-    </div>
-
-    <!-- Футер -->
-    <footer class="footer">
-        <p>Сайт создан с использованием заклинания 'Винггардиум Левиоса' и бессонных ночей в стиле 'Симс без сохранения'.</p>
-        <p class="copyright">©создатель, 2025</p>
-        <div class="easter-egg" onclick="showEasterEgg()">💀</div>
-    </footer>
-
-    <!-- Пасхалка -->
-    <div id="easterEgg" class="easter-egg-modal">
-        <div class="easter-egg-content">
-            <p>Сим умер от смеха, пока создавал этот сайт!</p>
-            <button onclick="hideEasterEgg()">Вернуться к магии</button>
         </div>
     </div>
 
