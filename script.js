@@ -111,21 +111,22 @@ function makeWish() {
 function createSmoke() {
     const candle = document.querySelector('.candle');
     
-    for (let i = 0; i < 10; i++) { // Больше дыма для эффекта
+    for (let i = 0; i < 12; i++) {
         setTimeout(() => {
             const smoke = document.createElement('div');
-            const size = 4 + Math.random() * 4;
+            const size = 3 + Math.random() * 5;
+            const startX = -10 + Math.random() * 20;
+            
             smoke.style.cssText = `
                 position: absolute;
-                top: -15px;
-                left: 50%;
+                top: -12px;
+                left: calc(50% + ${startX}px);
                 width: ${size}px;
                 height: ${size}px;
-                background: #888;
+                background: #666;
                 border-radius: 50%;
-                opacity: 0.6;
-                transform: translateX(-50%);
-                animation: smokeRise ${1 + Math.random()}s ease-out forwards;
+                opacity: 0.7;
+                animation: smokeRise ${1.5 + Math.random()}s ease-out forwards;
             `;
             
             candle.appendChild(smoke);
@@ -136,29 +137,29 @@ function createSmoke() {
                     smoke.parentNode.removeChild(smoke);
                 }
             }, 2000);
-        }, i * 120);
+        }, i * 100);
     }
 }
 
 // Анимация дыма
-const style = document.createElement('style');
-style.textContent = `
+const smokeStyle = document.createElement('style');
+smokeStyle.textContent = `
     @keyframes smokeRise {
         0% {
-            transform: translateX(-50%) translateY(0) scale(1);
-            opacity: 0.6;
+            transform: translateX(0) translateY(0) scale(1);
+            opacity: 0.7;
         }
         50% {
-            transform: translateX(${Math.random() * 30 - 15}px) translateY(-40px) scale(1.5);
-            opacity: 0.3;
+            transform: translateX(${Math.random() * 40 - 20}px) translateY(-30px) scale(1.8);
+            opacity: 0.4;
         }
         100% {
-            transform: translateX(${Math.random() * 40 - 20}px) translateY(-80px) scale(2);
+            transform: translateX(${Math.random() * 60 - 30}px) translateY(-60px) scale(2.5);
             opacity: 0;
         }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(smokeStyle);
 
 // Инициализация основной страницы
 function initializeMainPage() {
