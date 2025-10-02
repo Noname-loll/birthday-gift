@@ -1,4 +1,18 @@
-/* Стили для экрана с тортом */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cream: #f8f4e9;
+    --dark-wood: #2c1810;
+    --gold: #d4af37;
+    --burgundy: #800020;
+    --parchment: #f5e8c8;
+}
+
+/* СТИЛИ ДЛЯ ЭКРАНА С ТОРТОМ */
 .cake-screen {
     position: fixed;
     top: 0;
@@ -127,19 +141,10 @@
     margin-top: 10px !important;
 }
 
-/* Основной сайт */
+/* ОСНОВНОЙ САЙТ */
 .main-site {
     display: none;
     min-height: 100vh;
-}
-
-/* ОСНОВНЫЕ СТИЛИ САЙТА */
-:root {
-    --cream: #f8f4e9;
-    --dark-wood: #2c1810;
-    --gold: #d4af37;
-    --burgundy: #800020;
-    --parchment: #f5e8c8;
 }
 
 body {
@@ -148,8 +153,6 @@ body {
     color: var(--dark-wood);
     line-height: 1.6;
     overflow-x: hidden;
-    margin: 0;
-    padding: 0;
 }
 
 .background {
@@ -185,6 +188,7 @@ body {
     transform: translateY(-50%);
     z-index: 100;
     cursor: pointer;
+    text-align: center;
 }
 
 .sims-diamond {
@@ -206,17 +210,13 @@ body {
 }
 
 .owl {
-    width: 80px;
-    height: 100px;
-    position: relative;
+    font-size: 60px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-.owl::before {
-    content: "🦉";
-    font-size: 60px;
-    position: absolute;
-    top: 0;
-    left: 0;
+.owl:hover {
+    transform: scale(1.1);
 }
 
 /* Контейнер */
@@ -321,6 +321,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.5s ease;
 }
 
 /* Магические предметы */
@@ -561,4 +562,4 @@ body {
         right: 10px;
         transform: translateY(-50%) scale(0.8);
     }
-    }
+}
