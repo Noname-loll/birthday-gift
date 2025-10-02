@@ -11,25 +11,26 @@
     <!-- Экран с тортом -->
     <div id="cakeScreen" class="cake-screen">
         <div class="cake-container">
-            <div class="cake" onclick="startCelebration()">
+            <div class="cake">
                 <div class="cake-body">
                     <div class="cake-top"></div>
                     <div class="cake-middle"></div>
                     <div class="cake-bottom"></div>
                 </div>
-                <div class="candle" onclick="makeWish(event)">
+                <div class="candle">
                     <div class="flame"></div>
                 </div>
             </div>
             <div class="cake-message">
                 <h2>С Днём Рождения, Катя!</h2>
                 <p>Загадай желание и задуй свечу</p>
+                <p class="hint">(Нажми на свечу)</p>
             </div>
         </div>
     </div>
 
     <!-- Основной сайт (скрыт до нажатия на торт) -->
-    <div id="mainSite" class="main-site" style="display: none;">
+    <div id="mainSite" class="main-site">
         <!-- Фон -->
         <div class="background"></div>
         
@@ -43,7 +44,7 @@
         <div class="corner-decor bottom-right"></div>
         
         <!-- Сова и ромб Симс -->
-        <div class="owl-container" onclick="createLeaves()">
+        <div class="owl-container">
             <div class="sims-diamond"></div>
             <div class="owl"></div>
         </div>
