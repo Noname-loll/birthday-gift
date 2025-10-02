@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днем Рождения!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Левое украшение Гарри Поттер -->
+        <div class="decoration left">
+            <div class="hogwarts-decoration"></div>
+            <div class="paw-decoration"></div>
+        </div>
+
+        <!-- Центральная часть -->
+        <div class="main-content">
+            <div class="photo-frame">
+                <img src="assets/photo.jpg" alt="Фото именинницы" class="birthday-photo">
+                <div class="sims-highlight"></div>
+            </div>
+            
+            <div class="birthday-message">
+                <h1>С Днем Рождения!</h1>
+                <p>Пусть твой день будет полным магии и радости! 🎂</p>
+            </div>
+        </div>
+
+        <!-- Правое украшение Гарри Поттер -->
+        <div class="decoration right">
+            <div class="hogwarts-decoration"></div>
+            <div class="paw-decoration"></div>
+        </div>
+
+        <!-- Панель потребностей как в Симс -->
+        <div class="needs-panel">
+            <h3>Потребности именинницы</h3>
+            
+            <div class="need-item">
+                <label>Настроение:</label>
+                <div class="need-bar">
+                    <div class="need-fill mood" data-value="80"></div>
+                </div>
+                <span class="need-value">80%</span>
+            </div>
+
+            <div class="need-item">
+                <label>Энергия:</label>
+                <div class="need-bar">
+                    <div class="need-fill energy" data-value="60"></div>
+                </div>
+                <span class="need-value">60%</span>
+            </div>
+
+            <div class="need-item">
+                <label>Голод:</label>
+                <div class="need-bar">
+                    <div class="need-fill hunger" data-value="40"></div>
+                </div>
+                <span class="need-value">40%</span>
+            </div>
+
+            <div class="need-item">
+                <label>Веселье:</label>
+                <div class="need-bar">
+                    <div class="need-fill fun" data-value="90"></div>
+                </div>
+                <span class="need-value">90%</span>
+            </div>
+
+            <div class="need-item">
+                <label>Социальное:</label>
+                <div class="need-bar">
+                    <div class="need-fill social" data-value="70"></div>
+                </div>
+                <span class="need-value">70%</span>
+            </div>
+
+            <div class="controls">
+                <button onclick="randomizeNeeds()">Случайные значения</button>
+                <button onclick="maxAllNeeds()">Заполнить все!</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
