@@ -11,29 +11,30 @@
     <!-- Экран с тортом -->
     <div id="cakeScreen" class="cake-screen">
         <div class="cake-container">
-            <div class="cake">
-                <div class="cake-body">
-                    <div class="cake-top"></div>
-                    <div class="cake-middle"></div>
-                    <div class="cake-bottom"></div>
-                </div>
+            <div class="birthday-cake" onclick="makeWish()">
                 <div class="candle">
                     <div class="flame"></div>
+                </div>
+                <div class="cake">
+                    <div class="layer top"></div>
+                    <div class="layer middle"></div>
+                    <div class="layer bottom"></div>
                 </div>
             </div>
             <div class="cake-message">
                 <h2>С Днём Рождения, Катя!</h2>
                 <p>Загадай желание и задуй свечу</p>
+                <p class="hint">(Нажми на торт или свечу)</p>
             </div>
         </div>
     </div>
 
-    <!-- Основной сайт (скрыт до нажатия на торт) -->
+    <!-- Основной сайт -->
     <div id="mainSite" class="main-site">
         <!-- Фон -->
         <div class="background"></div>
         
-        <!-- Падающие листья (можно убрать) -->
+        <!-- Падающие листья -->
         <div id="leavesContainer" class="leaves-container"></div>
         
         <!-- Виньетки по углам -->
@@ -43,16 +44,16 @@
         <div class="corner-decor bottom-right"></div>
         
         <!-- Сова и ромб Симс -->
-        <div class="owl-container">
+        <div class="owl-container" onclick="createLeaves()">
             <div class="sims-diamond"></div>
-            <div class="owl"></div>
+            <div class="owl">🦉</div>
         </div>
 
         <!-- Основной контент -->
         <div class="container">
             <!-- Hero Section -->
             <section class="hero">
-                <h1 class="main-title">С Днём Рождения, <span class="name">Катя</span>!</h1>
+                <h1 class="main-title">С Днем Рождения, <span class="name">Катя</span>!</h1>
                 <p class="subtitle">Этот сайт заколдован магией Гарри Поттера и управляется волей Симсов...</p>
             </section>
 
