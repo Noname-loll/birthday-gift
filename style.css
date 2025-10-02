@@ -19,7 +19,7 @@
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0); }
+    0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
 }
 
@@ -27,61 +27,70 @@
     position: relative;
     cursor: pointer;
     margin-bottom: 30px;
+    width: 220px;
+    height: 180px;
+    margin: 0 auto 40px;
 }
 
 .cake-body {
     position: relative;
-    width: 200px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
 }
 
 .cake-top {
     width: 180px;
-    height: 40px;
+    height: 50px;
     background: #ffb6c1;
     border-radius: 50% 50% 0 0;
     margin: 0 auto;
     position: relative;
+    border: 2px solid #ff69b4;
 }
 
 .cake-middle {
     width: 200px;
-    height: 40px;
+    height: 50px;
     background: #ff69b4;
     border-radius: 10px;
     margin: -10px auto 0;
+    border: 2px solid #ff1493;
 }
 
 .cake-bottom {
     width: 220px;
-    height: 40px;
+    height: 50px;
     background: #ff1493;
     border-radius: 10px;
     margin: -5px auto 0;
+    border: 2px solid #c71585;
 }
 
 .candle {
     position: absolute;
-    top: -40px;
+    top: -60px;
     left: 50%;
     transform: translateX(-50%);
-    width: 10px;
-    height: 30px;
+    width: 12px;
+    height: 40px;
     background: #fff;
     border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #ddd;
 }
 
 .flame {
     position: absolute;
-    top: -15px;
+    top: -25px;
     left: 50%;
     transform: translateX(-50%);
-    width: 15px;
-    height: 20px;
+    width: 20px;
+    height: 30px;
     background: #ff6b35;
     border-radius: 50% 50% 20% 20%;
     animation: flicker 1.5s ease-in-out infinite alternate;
-    box-shadow: 0 0 20px #ff6b35;
+    box-shadow: 0 0 20px #ff6b35, 0 0 30px #ff4500;
+    cursor: pointer;
 }
 
 @keyframes flicker {
@@ -89,9 +98,17 @@
         transform: translateX(-50%) scale(1);
         opacity: 1;
     }
+    25% { 
+        transform: translateX(-50%) scale(1.1) translateX(2px);
+        opacity: 0.9;
+    }
     50% { 
-        transform: translateX(-50%) scale(1.1) translateY(2px);
-        opacity: 0.8;
+        transform: translateX(-50%) scale(0.9) translateX(-1px);
+        opacity: 1;
+    }
+    75% { 
+        transform: translateX(-50%) scale(1.05) translateX(1px);
+        opacity: 0.95;
     }
 }
 
@@ -99,16 +116,71 @@
     color: #2c1810;
     font-size: 2.5em;
     margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .cake-message p {
     color: #800020;
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-style: italic;
+    margin-bottom: 5px;
 }
 
+.hint {
+    font-size: 1em !important;
+    opacity: 0.7;
+    color: #2c1810 !important;
+    margin-top: 10px !important;
+}
+
+/* Основной сайт изначально скрыт */
 .main-site {
+    display: none;
     min-height: 100vh;
+}
+
+/* Остальные стили остаются как были */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--parchment) 100%);
+    z-index: -1;
+}
+
+.corner-decor {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    background-image: radial-gradient(circle at center, transparent 60%, var(--gold) 100%);
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.top-left {
+    top: -50px;
+    left: -50px;
+    transform: rotate(45deg);
+}
+
+.top-right {
+    top: -50px;
+    right: -50px;
+    transform: rotate(-45deg);
+}
+
+.bottom-left {
+    bottom: -50px;
+    left: -50px;
+    transform: rotate(-45deg);
+}
+
+.bottom-right {
+    bottom: -50px;
+    right: -50px;
+    transform: rotate(45deg);
 }
 
 /* Исправленный ромб Симс */
@@ -123,10 +195,48 @@
     animation: pulse 3s ease-in-out infinite;
     box-shadow: 0 0 20px #4CAF50;
     z-index: 101;
-    border-radius: 5px; /* Убираем круг, делаем ромб */
 }
 
-/* Стили для падающих листьев (можно удалить если не понравится) */
+@keyframes pulse {
+    0%, 100% { 
+        transform: translateX(-50%) rotate(45deg) scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: translateX(-50%) rotate(45deg) scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.owl-container {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    cursor: pointer;
+}
+
+.owl {
+    width: 80px;
+    height: 100px;
+    background: 
+        radial-gradient(circle at 30% 40%, white 10px, transparent 11px),
+        radial-gradient(circle at 70% 40%, white 10px, transparent 11px),
+        radial-gradient(ellipse at 50% 60%, white 40px, transparent 41px);
+    opacity: 0.9;
+    position: relative;
+}
+
+.owl::before {
+    content: "🦉";
+    font-size: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Стили для падающих листьев */
 .leaves-container {
     position: fixed;
     top: 0;
@@ -154,62 +264,53 @@
     }
 }
 
-/* Исправления для hero section */
+/* Hero Section */
 .hero {
     text-align: center;
-    padding: 40px 0; /* Уменьшил отступы */
-    margin-bottom: 30px; /* Уменьшил отступы */
+    padding: 40px 0;
+    margin-bottom: 30px;
 }
 
 .main-title {
     font-family: 'Cinzel', 'Cormorant Garamond', serif;
-    font-size: 2.8em; /* Уменьшил размер для лучшего отображения */
+    font-size: 2.8em;
     color: var(--dark-wood);
-    margin-bottom: 15px; /* Уменьшил отступ */
+    margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Показываем сову и на мобильных */
-.owl-container {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 100;
-    cursor: pointer;
+.name {
+    color: var(--burgundy);
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.2em;
+    display: block;
+    margin-top: 10px;
 }
 
-/* Адаптивность - показываем сову везде */
-@media (max-width: 768px) {
-    .main-title {
-        font-size: 2.2em;
-    }
-    
-    .magic-scroll {
-        width: 90%;
-        padding: 30px 20px;
-    }
-    
-    .magic-items {
-        gap: 15px;
-    }
-    
-    .item-icon {
-        width: 50px;
-        height: 50px;
-    }
-    
-    /* УБИРАЕМ ЭТОТ БЛОК, чтобы сова показывалась на мобильных */
-    /* .owl-container {
-        display: none;
-    } */
-    
-    .letter {
-        padding: 30px 20px;
-    }
-    
-    .owl-container {
-        right: 10px;
-        transform: translateY(-50%) scale(0.8);
-    }
+.subtitle {
+    font-size: 1.3em;
+    color: var(--dark-wood);
+    opacity: 0.8;
+    font-style: italic;
 }
+
+/* Остальные стили... */
+:root {
+    --cream: #f8f4e9;
+    --dark-wood: #2c1810;
+    --gold: #d4af37;
+    --burgundy: #800020;
+    --parchment: #f5e8c8;
+}
+
+body {
+    font-family: 'Lora', 'Garamond', serif;
+    background-color: var(--cream);
+    color: var(--dark-wood);
+    line-height: 1.6;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Добавьте остальные стили из предыдущего варианта... */
