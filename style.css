@@ -1,17 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --cream: #f8f4e9;
-    --dark-wood: #2c1810;
-    --gold: #d4af37;
-    --burgundy: #800020;
-    --parchment: #f5e8c8;
-}
-
 /* СТИЛИ ДЛЯ ЭКРАНА С ТОРТОМ */
 .cake-screen {
     position: fixed;
@@ -34,13 +20,13 @@
 
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
 }
 
 .birthday-cake {
     position: relative;
-    width: 240px;
-    height: 220px;
+    width: 220px;
+    height: 180px;
     margin: 0 auto 40px;
     cursor: pointer;
 }
@@ -48,630 +34,270 @@
 /* Тарелка */
 .plate {
     position: absolute;
-    bottom: -15px;
+    bottom: -12px;
     left: 50%;
     transform: translateX(-50%);
-    width: 220px;
-    height: 20px;
-    background: linear-gradient(to bottom, #d4af37, #b8860b);
+    width: 200px;
+    height: 15px;
+    background: linear-gradient(to bottom, #d4af37, #b8860b, #8b6914);
     border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    z-index: 0;
+    box-shadow: 
+        0 4px 12px rgba(0,0,0,0.15),
+        inset 0 2px 4px rgba(255,255,255,0.3);
+    z-index: 1;
 }
 
 /* Свеча */
 .candle {
     position: absolute;
-    top: -20px;
+    top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    width: 12px;
-    height: 30px;
-    background: linear-gradient(to right, #ffffff 0%, #f0f0f0 30%, #e8e8e8 100%);
-    border-radius: 6px 6px 3px 3px;
+    width: 10px;
+    height: 25px;
+    background: linear-gradient(to bottom, 
+        #ffffff 0%,
+        #f8f8f8 20%,
+        #f0f0f0 50%,
+        #e8e8e8 100%);
+    border-radius: 4px 4px 2px 2px;
     z-index: 20;
     box-shadow: 
-        inset 0 -2px 4px rgba(0,0,0,0.1),
+        inset 0 -3px 6px rgba(0,0,0,0.1),
         0 2px 4px rgba(0,0,0,0.1);
 }
 
 .flame {
     position: absolute;
-    top: -18px;
+    top: -16px;
     left: 50%;
     transform: translateX(-50%);
-    width: 16px;
-    height: 22px;
+    width: 14px;
+    height: 20px;
     background: linear-gradient(to top, 
-        #ffd700 0%,
-        #ff9500 30%,
-        #ff4500 70%,
-        #ff6b35 100%);
+        #ffff00 0%,
+        #ffd700 20%,
+        #ffa500 50%,
+        #ff4500 80%,
+        #ff6347 100%);
     border-radius: 50% 50% 20% 20%;
-    animation: flicker 1.5s ease-in-out infinite alternate;
+    animation: flicker 1.8s ease-in-out infinite alternate;
     box-shadow: 
         0 0 20px #ff6b35,
         0 0 30px #ff9500,
-        0 0 40px rgba(255, 107, 53, 0.3);
-    filter: blur(0.8px);
+        0 0 40px rgba(255, 149, 0, 0.4);
+    filter: blur(0.6px);
     z-index: 25;
 }
 
 @keyframes flicker {
     0% { 
-        transform: translateX(-50%) scale(1) rotate(-1deg); 
-        opacity: 1; 
-        height: 22px;
+        transform: translateX(-50%) scale(1, 1) rotate(-1deg); 
+        opacity: 0.95; 
     }
     25% { 
-        transform: translateX(-50%) scale(1.1) rotate(0.5deg); 
-        opacity: 0.9; 
-        height: 24px;
+        transform: translateX(-50%) scale(1.05, 1.1) rotate(0.5deg); 
+        opacity: 1; 
     }
     50% { 
-        transform: translateX(-50%) scale(0.95) rotate(-0.5deg); 
-        opacity: 1; 
-        height: 20px;
+        transform: translateX(-50%) scale(0.98, 0.95) rotate(-0.5deg); 
+        opacity: 0.9; 
     }
     75% { 
-        transform: translateX(-50%) scale(1.05) rotate(1deg); 
-        opacity: 0.95; 
-        height: 23px;
+        transform: translateX(-50%) scale(1.03, 1.05) rotate(1deg); 
+        opacity: 0.98; 
     }
     100% { 
-        transform: translateX(-50%) scale(1) rotate(-1deg); 
-        opacity: 1; 
-        height: 22px;
+        transform: translateX(-50%) scale(1, 1) rotate(-1deg); 
+        opacity: 0.95; 
     }
 }
 
-/* Торт */
+/* Основа торта */
 .cake {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 200px;
-    height: 120px;
+    width: 180px;
+    height: 100px;
     z-index: 10;
 }
 
+/* Слои торта */
 .layer {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 
-        inset 0 3px 6px rgba(255,255,255,0.6),
-        inset 0 -3px 6px rgba(0,0,0,0.2),
-        0 4px 8px rgba(0,0,0,0.15);
+        inset 0 4px 8px rgba(255,255,255,0.6),
+        inset 0 -4px 8px rgba(0,0,0,0.2),
+        0 4px 12px rgba(0,0,0,0.15);
     transition: all 0.3s ease;
 }
 
-.layer.top {
-    width: 140px;
-    height: 35px;
-    background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 50%, #ff1493 100%);
-    bottom: 75px;
-    z-index: 13;
-    border: 2px solid #ff1493;
-}
-
-.layer.middle {
+/* Нижний слой */
+.layer.bottom {
     width: 160px;
     height: 40px;
-    background: linear-gradient(135deg, #ff69b4 0%, #ff1493 50%, #c71585 100%);
-    bottom: 40px;
-    z-index: 12;
-    border: 2px solid #c71585;
-}
-
-.layer.bottom {
-    width: 180px;
-    height: 45px;
-    background: linear-gradient(135deg, #ff1493 0%, #c71585 50%, #8b008b 100%);
+    background: linear-gradient(135deg, 
+        #ff1493 0%,
+        #dc143c 30%,
+        #b22222 70%,
+        #8b0000 100%);
     bottom: 0;
     z-index: 11;
-    border: 2px solid #8b008b;
+    border: 2px solid #8b0000;
 }
 
-/* Украшения торта */
-.decoration {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    height: 100%;
-    z-index: 15;
+/* Средний слой */
+.layer.middle {
+    width: 140px;
+    height: 35px;
+    background: linear-gradient(135deg, 
+        #ff69b4 0%,
+        #ff1493 30%,
+        #dc143c 70%,
+        #b22222 100%);
+    bottom: 38px;
+    z-index: 12;
+    border: 2px solid #b22222;
 }
 
+/* Верхний слой */
+.layer.top {
+    width: 120px;
+    height: 30px;
+    background: linear-gradient(135deg, 
+        #ffb6c1 0%,
+        #ff69b4 30%,
+        #ff1493 70%,
+        #dc143c 100%);
+    bottom: 70px;
+    z-index: 13;
+    border: 2px solid #dc143c;
+}
+
+/* Кремовые украшения */
 .layer::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 85%;
-    height: 6px;
+    width: 90%;
+    height: 4px;
     background: linear-gradient(90deg, 
-        transparent 0%, 
+        transparent 5%, 
         rgba(255,255,255,0.9) 20%,
+        rgba(255,255,255,0.9) 30%,
+        transparent 35%,
+        transparent 65%,
+        rgba(255,255,255,0.9) 70%,
         rgba(255,255,255,0.9) 80%,
-        transparent 100%);
-    border-radius: 3px;
+        transparent 95%);
+    border-radius: 2px;
     opacity: 0.8;
 }
 
-/* Точки-украшения */
+/* Блестки на торте */
 .layer::after {
     content: "";
     position: absolute;
-    top: 8px;
-    left: 15px;
-    width: 8px;
-    height: 8px;
+    top: 6px;
+    left: 10px;
+    width: 6px;
+    height: 6px;
     background: rgba(255,255,255,0.9);
     border-radius: 50%;
     box-shadow: 
-        30px 0 0 rgba(255,255,255,0.9),
-        60px 0 0 rgba(255,255,255,0.9),
-        90px 0 0 rgba(255,255,255,0.9);
+        25px 8px 0 rgba(255,255,255,0.9),
+        50px 4px 0 rgba(255,255,255,0.9),
+        75px 10px 0 rgba(255,255,255,0.9),
+        100px 6px 0 rgba(255,255,255,0.9);
+    animation: sparkle 3s ease-in-out infinite;
 }
 
+@keyframes sparkle {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Сообщение */
 .cake-message h2 {
     color: #2c1810;
-    font-size: 2.2em;
+    font-size: 2em;
     margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    font-weight: 600;
 }
 
 .cake-message p {
     color: #800020;
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-style: italic;
     margin-bottom: 8px;
+    line-height: 1.4;
 }
 
 .hint {
-    font-size: 1em !important;
-    opacity: 0.7;
+    font-size: 0.95em !important;
+    opacity: 0.8;
     color: #2c1810 !important;
-    margin-top: 15px !important;
+    margin-top: 12px !important;
 }
 
 .shake-hint {
     display: block;
-    font-size: 1em !important;
-    margin-top: 10px !important;
+    font-size: 0.9em !important;
+    margin-top: 8px !important;
     color: #d4af37 !important;
     font-weight: bold;
-    animation: pulse 2s ease-in-out infinite;
+    animation: shakePulse 2s ease-in-out infinite;
 }
 
-/* ОСНОВНОЙ САЙТ */
-.main-site {
-    display: none;
-    min-height: 100vh;
+@keyframes shakePulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.05); opacity: 1; }
 }
 
-body {
-    font-family: 'Lora', 'Garamond', serif;
-    background-color: var(--cream);
-    color: var(--dark-wood);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-.background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--cream) 0%, var(--parchment) 100%);
-    z-index: -1;
-}
-
-/* Виньетки по углам */
-.corner-decor {
-    position: fixed;
-    width: 200px;
-    height: 200px;
-    background-image: radial-gradient(circle at center, transparent 60%, var(--gold) 100%);
-    opacity: 0.1;
-    z-index: -1;
-}
-
-.top-left { top: -50px; left: -50px; transform: rotate(45deg); }
-.top-right { top: -50px; right: -50px; transform: rotate(-45deg); }
-.bottom-left { bottom: -50px; left: -50px; transform: rotate(-45deg); }
-.bottom-right { bottom: -50px; right: -50px; transform: rotate(45deg); }
-
-/* Сова и ромб Симс - уменьшенные */
-.owl-container {
-    position: fixed;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 100;
-    cursor: pointer;
-    text-align: center;
-}
-
-.sims-diamond {
-    width: 25px;
-    height: 25px;
-    background: #4CAF50;
-    position: absolute;
-    top: -35px;
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
-    animation: diamondPulse 3s ease-in-out infinite;
-    box-shadow: 0 0 15px #4CAF50;
-    z-index: 101;
-}
-
-@keyframes diamondPulse {
-    0%, 100% { transform: translateX(-50%) rotate(45deg) scale(1); opacity: 1; }
-    50% { transform: translateX(-50%) rotate(45deg) scale(1.1); opacity: 0.8; }
-}
-
-.owl {
-    font-size: 40px;
-    cursor: pointer;
+/* Анимация при наведении на торт */
+.birthday-cake:hover .cake {
+    transform: translateX(-50%) scale(1.02);
     transition: transform 0.3s ease;
-    display: block;
-    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
 }
 
-.owl:hover {
-    transform: scale(1.05);
+.birthday-cake:hover .flame {
+    animation-duration: 1.2s;
 }
 
-/* Остальные стили остаются прежними */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    position: relative;
-    z-index: 1;
-}
-
-.hero {
-    text-align: center;
-    padding: 60px 0;
-    margin-bottom: 40px;
-}
-
-.main-title {
-    font-family: 'Cinzel', 'Cormorant Garamond', serif;
-    font-size: 3.5em;
-    color: var(--dark-wood);
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-}
-
-.name {
-    color: var(--burgundy);
-    font-family: 'Great Vibes', cursive;
-    font-size: 1.2em;
-    display: block;
-    margin-top: 10px;
-}
-
-.subtitle {
-    font-size: 1.3em;
-    color: var(--dark-wood);
-    opacity: 0.8;
-    font-style: italic;
-}
-
-.scroll-section {
-    text-align: center;
-    padding: 60px 0;
-}
-
-.scroll-title {
-    font-family: 'Cinzel', serif;
-    font-size: 2em;
-    color: var(--dark-wood);
-    margin-bottom: 40px;
-}
-
-.scroll-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-}
-
-.magic-scroll {
-    width: 500px;
-    min-height: 200px;
-    background: linear-gradient(135deg, var(--parchment) 0%, #e8dcb5 100%);
-    border: 2px solid var(--gold);
-    border-radius: 10px;
-    padding: 40px 30px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 0 50px rgba(212, 175, 55, 0.1);
-    transform: scale(0.95);
-    transition: all 0.5s ease;
-}
-
-.magic-scroll::before {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    border: 1px solid var(--gold);
-    border-radius: 5px;
-    opacity: 0.3;
-}
-
-.magic-scroll.unrolled {
-    transform: scale(1);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2), inset 0 0 100px rgba(212, 175, 55, 0.2);
-}
-
-.scroll-content {
-    position: relative;
-    z-index: 2;
-}
-
-.prediction-text {
-    font-size: 1.3em;
-    line-height: 1.8;
-    color: var(--dark-wood);
-    font-family: 'Cormorant Garamond', serif;
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease;
-}
-
-.magic-items {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-}
-
-.magic-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 15px;
-    border-radius: 10px;
-}
-
-.magic-item:hover {
-    transform: translateY(-10px);
-    background: rgba(212, 175, 55, 0.1);
-}
-
-.item-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 10px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: all 0.3s ease;
-}
-
-.wand { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%232c1810" d="M22 2L20 4L18.3 2.3L16.8 3.8L19 6L17 8L16 7L13 10L12 9L7 14L5 12L2 15L4 17L6 15L7 16L10 13L11 14L14 11L15 12L17 10L15 8L17.8 5.2L16.3 3.7L18 2L16 0L22 2Z"/></svg>'); }
-.mirror { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%232c1810" d="M12 1C16.69 1 21 5.47 21 11C21 13.5 20 15.77 18.26 17.54L19.67 18.95C20.11 18.39 20.5 17.78 20.83 17.13C22.5 13.73 22.5 10.91 20.83 8.13C19.5 6.09 17.5 4.5 15 3.5C13.77 3 12.39 3 11 3C9.61 3 8.23 3 7 3.5C4.5 4.5 2.5 6.09 1.17 8.13C-0.5 10.91 -0.5 13.73 1.17 16.87C2.5 18.91 4.5 20.5 7 21.5C8.23 22 9.61 22 11 22C12 22 13 22 14 21.74L12.46 20.26C12 20.42 11.5 20.5 11 20.5C6.31 20.5 2 16.03 2 10.5C2 5.97 6.31 1.5 11 1.5C11.33 1.5 11.67 1.5 12 1.5Z"/></svg>'); }
-.crystal { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%232c1810" d="M16.54 3C16.38 3.36 16.2 3.71 16 4.05L21 9.05C21.67 9.72 21.67 10.78 21 11.45L12.45 20C11.78 20.67 10.72 20.67 10.05 20L3 12.94C2.33 12.27 2.33 11.21 3 10.54L11.55 2C12.22 1.33 13.28 1.33 13.95 2L16.54 3M4.5 10.5L10 16L14 12L10 8L4.5 10.5Z"/></svg>'); }
-.potion { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%232c1810" d="M19 3C19.55 3 20 3.45 20 4C20 4.55 19.55 5 19 5H18V6C18 7.1 17.1 8 16 8H15V6C15 5.45 14.55 5 14 5H8C7.45 5 7 5.45 7 6V8H6C4.9 8 4 7.1 4 6V5H3C2.45 5 2 4.55 2 4C2 3.45 2.45 3 3 3H19M11 19C7.13 19 4 15.87 4 12C4 11.26 4.12 10.53 4.35 9.84L6 11.5C6 14.5 8.24 17 11 17C13.76 17 16 14.5 16 11.5L17.65 9.84C17.88 10.53 18 11.26 18 12C18 15.87 14.87 19 11 19Z"/></svg>'); }
-.blueprint { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%232c1810" d="M7 14C5.9 14 5 13.1 5 12S5.9 10 7 10 9 10.9 9 12 8.1 14 7 14M12.6 10C11.8 7.7 9.6 6 7 6C3.7 6 1 8.7 1 12S3.7 18 7 18C9.6 18 11.8 16.3 12.6 14H16V18H20V14H23V10H12.6Z"/></svg>'); }
-
-.magic-item span {
-    font-family: 'Cinzel', serif;
-    font-size: 0.9em;
-    color: var(--dark-wood);
-    text-align: center;
-}
-
-.instruction {
-    font-style: italic;
-    color: var(--dark-wood);
-    opacity: 0.7;
-    font-size: 1.1em;
-}
-
-.congratulations {
-    padding: 80px 0;
-}
-
-.letter {
-    max-width: 700px;
-    margin: 0 auto;
-    background: var(--parchment);
-    padding: 50px;
-    border: 2px solid var(--gold);
-    border-radius: 10px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.letter::before {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    border: 1px solid var(--gold);
-    border-radius: 5px;
-    opacity: 0.3;
-}
-
-.letter h2 {
-    font-family: 'Cinzel', serif;
-    text-align: center;
-    margin-bottom: 30px;
-    color: var(--burgundy);
-    font-size: 2em;
-}
-
-.letter-content {
-    font-size: 1.2em;
-    line-height: 1.8;
-    color: var(--dark-wood);
-}
-
-.letter-content p {
-    margin-bottom: 20px;
-    text-align: justify;
-}
-
-.signature {
-    margin-top: 40px;
-    text-align: right;
-    font-style: italic;
-}
-
-.signature-name {
-    font-family: 'Great Vibes', cursive;
-    font-size: 1.5em;
-    color: var(--burgundy);
-    margin-top: 10px;
-}
-
-.date {
-    margin-top: 5px;
-    opacity: 0.7;
-}
-
-.footer {
-    text-align: center;
-    padding: 40px 20px;
-    margin-top: 60px;
-    border-top: 1px solid var(--gold);
-    color: var(--dark-wood);
-    opacity: 0.7;
-    position: relative;
-}
-
-.copyright {
-    margin-top: 10px;
-    font-size: 0.9em;
-}
-
-.easter-egg {
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-    cursor: pointer;
-    opacity: 0.3;
-    transition: opacity 0.3s ease;
-    font-size: 0.8em;
-}
-
-.easter-egg:hover {
-    opacity: 1;
-}
-
-.easter-egg-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-}
-
-.easter-egg-content {
-    background: var(--parchment);
-    padding: 40px;
-    border-radius: 10px;
-    text-align: center;
-    border: 2px solid var(--gold);
-    max-width: 400px;
-}
-
-.easter-egg-content button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: var(--burgundy);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Cinzel', serif;
-}
-
-.leaves-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 999;
-}
-
-.leaf {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(45deg, #d4af37, #8b7511);
-    opacity: 0.7;
-    border-radius: 50% 0 50% 0;
-    animation: fall linear forwards;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
+/* Адаптивность для мобильных */
 @media (max-width: 768px) {
-    .main-title {
-        font-size: 2.5em;
-    }
-    
-    .magic-scroll {
-        width: 90%;
-        padding: 30px 20px;
-    }
-    
-    .magic-items {
-        gap: 15px;
-    }
-    
-    .item-icon {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .letter {
-        padding: 30px 20px;
-    }
-    
-    .owl-container {
-        right: 10px;
-        transform: translateY(-50%) scale(0.8);
-    }
-    
     .cake-container {
-        transform: scale(0.9);
+        transform: scale(0.85);
     }
     
     .birthday-cake {
         width: 200px;
-        height: 180px;
+        height: 160px;
+    }
+    
+    .cake-message h2 {
+        font-size: 1.8em;
+    }
+    
+    .cake-message p {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .cake-container {
+        transform: scale(0.75);
+    }
+    
+    .cake-message h2 {
+        font-size: 1.6em;
     }
     }
