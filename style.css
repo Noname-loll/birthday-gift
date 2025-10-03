@@ -363,16 +363,24 @@ body {
     50% { transform: translateX(-50%) rotate(45deg) scale(1.1); opacity: 0.8; }
 }
 
+/* Белая сова как в Хогвартс */
 .owl {
     font-size: 40px;
     cursor: pointer;
     transition: transform 0.3s ease;
     display: block;
-    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    filter: 
+        drop-shadow(2px 2px 4px rgba(0,0,0,0.3))
+        brightness(0) invert(1) /* Делаем сову белой */
+        drop-shadow(1px 1px 2px rgba(0,0,0,0.5)); /* Добавляем тень для контраста */
 }
 
 .owl:hover {
     transform: scale(1.05);
+    filter: 
+        drop-shadow(2px 2px 6px rgba(0,0,0,0.4))
+        brightness(0) invert(1)
+        drop-shadow(1px 1px 3px rgba(0,0,0,0.6));
 }
 
 /* Контейнер */
@@ -662,7 +670,7 @@ body {
     font-family: 'Cinzel', serif;
 }
 
-/* Падающие листья */
+/* Падающие листья - УЛУЧШЕННАЯ АНИМАЦИЯ */
 .leaves-container {
     position: fixed;
     top: 0;
@@ -681,6 +689,7 @@ body {
     opacity: 0.7;
     border-radius: 50% 0 50% 0;
     animation: fall linear forwards;
+    top: -30px; /* Начинают сразу сверху за экраном */
 }
 
 @keyframes fall {
@@ -753,4 +762,4 @@ body {
     .scroll-title {
         font-size: 1.6em;
     }
-}
+    }
