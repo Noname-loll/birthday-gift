@@ -232,7 +232,7 @@
 }
 
 /* Блестки на торте - УМЕНЬШЕНЫ чтобы не выходили за торт */
-.layer::after {
+/*.layer::after {
     content: "";
     position: absolute;
     top: 6px;
@@ -248,7 +248,7 @@
         80px 4px 0 rgba(255,255,255,0.9);    /* Ближе к центру */
     animation: sparkle 3s ease-in-out infinite;
 }
-
+*/
 @keyframes sparkle {
     0%, 100% { opacity: 0.7; transform: scale(1); }
     50% { opacity: 1; transform: scale(1.1); }
