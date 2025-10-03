@@ -753,43 +753,33 @@ body {
     .scroll-title {
         font-size: 1.6em;
     }
+
 }
-    /* ДОБАВЛЯЕМ ТОЧКИ НА НИЖНИЙ КОРЖ ТОРТА */
+/* ДОБАВЛЯЕМ ТОЧКИ НА НИЖНИЙ КОРЖ ТОРТА */
 .layer.bottom {
-    position: relative; /* Добавляем для работы псевдоэлементов */
+    position: relative;
 }
 
-/* Точки по верхнему краю нижнего коржа */
 .layer.bottom::before {
     content: '';
     position: absolute;
-    top: -10px;
+    top: -8px;
     left: 50%;
     transform: translateX(-50%);
     width: 140px;
-    height: 15px;
-    background: 
-        radial-gradient(circle at 15px 50%, #ffffff 5px, transparent 6px),
-        radial-gradient(circle at 35px 50%, #ffffff 5px, transparent 6px),
-        radial-gradient(circle at 55px 50%, #ffffff 5px, transparent 6px),
-        radial-gradient(circle at 75px 50%, #ffffff 5px, transparent 6px),
-        radial-gradient(circle at 95px 50%, #ffffff 5px, transparent 6px),
-        radial-gradient(circle at 115px 50%, #ffffff 5px, transparent 6px),
-        radial-gradient(circle at 135px 50%, #ffffff 5px, transparent 6px);
-    background-repeat: no-repeat;
+    height: 12px;
+    display: flex;
+    justify-content: space-around;
     z-index: 14;
-    animation: dotsSparkle 3s ease-in-out infinite;
-    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
 }
 
-/* Анимация мерцания точек */
-@keyframes dotsSparkle {
-    0%, 100% { 
-        opacity: 0.9;
-        transform: translateX(-50%) scale(1);
-    }
-    50% { 
-        opacity: 1;
-        transform: translateX(-50%) scale(1.02);
-    }
+.layer.bottom::before::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 
+        0 0 0 2px rgba(255,255,255,0.3),
+        0 2px 4px rgba(0,0,0,0.2);
 }
