@@ -278,7 +278,7 @@ function createParticles(color = '#d4af37') {
 }
 
 // Создание падающих листьев
-function createLeaves() {
+/*function createLeaves() {
     const leavesContainer = document.getElementById('leavesContainer');
     
     // Очищаем предыдущие листья
@@ -313,6 +313,41 @@ function createLeaves() {
             }, (delay + duration) * 1000);
             
         }, i * 200);
+    }
+}*/
+// Создание падающих листьев - УЛУЧШЕННАЯ ВЕРСИЯ
+function createLeaves() {
+    const leavesContainer = document.getElementById('leavesContainer');
+    
+    // Очищаем предыдущие листья
+    leavesContainer.innerHTML = '';
+    
+    // Создаем 25 новых листьев сразу
+    for (let i = 0; i < 25; i++) {
+        const leaf = document.createElement('div');
+        leaf.className = 'leaf';
+        
+        // Случайная позиция по горизонтали
+        const left = Math.random() * 100;
+        
+        // Случайная задержка (очень маленькая для мгновенного начала)
+        const delay = Math.random() * 0.5; // Было до 5 секунд
+        const duration = 2 + Math.random() * 3; // Быстрее падение
+        
+        leaf.style.cssText = `
+            left: ${left}%;
+            animation-delay: ${delay}s;
+            animation-duration: ${duration}s;
+        `;
+        
+        leavesContainer.appendChild(leaf);
+        
+        // Удаляем лист после анимации
+        setTimeout(() => {
+            if (leaf.parentNode) {
+                leaf.parentNode.removeChild(leaf);
+            }
+        }, (delay + duration) * 1000);
     }
 }
 
