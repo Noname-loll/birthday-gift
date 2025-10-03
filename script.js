@@ -284,8 +284,8 @@ function createLeaves() {
     // Очищаем предыдущие листья
     leavesContainer.innerHTML = '';
     
-    // Создаем 20 новых листьев, было 20, стало 30
-    for (let i = 0; i < 30; i++) {
+    // Создаем 20 новых листьев, было 20, было 30, стало 100
+    for (let i = 0; i < 100; i++) {
         setTimeout(() => {
             const leaf = document.createElement('div');
             leaf.className = 'leaf';
