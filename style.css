@@ -755,31 +755,4 @@ body {
     }
 
 }
-/* ДОБАВЛЯЕМ ТОЧКИ НА НИЖНИЙ КОРЖ ТОРТА */
-.layer.bottom {
-    position: relative;
-}
-
-.layer.bottom::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 140px;
-    height: 12px;
-    display: flex;
-    justify-content: space-around;
-    z-index: 14;
-}
-
-.layer.bottom::before::after {
-    content: '';
-    width: 6px;
-    height: 6px;
-    background: #ffffff;
-    border-radius: 50%;
-    box-shadow: 
-        0 0 0 2px rgba(255,255,255,0.3),
-        0 2px 4px rgba(0,0,0,0.2);
 }
