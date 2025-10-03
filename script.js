@@ -278,7 +278,7 @@ function createParticles(color = '#d4af37') {
 }
 
 // Создание падающих листьев
-/*function createLeaves() {
+function createLeaves() {
     const leavesContainer = document.getElementById('leavesContainer');
     
     // Очищаем предыдущие листья
@@ -314,9 +314,9 @@ function createParticles(color = '#d4af37') {
             
         }, i * 200);
     }
-}*/
+}
 // Создание падающих листьев - УЛУЧШЕННАЯ ВЕРСИЯ
-function createLeaves() {
+/*function createLeaves() {
     const leavesContainer = document.getElementById('leavesContainer');
     
     // Очищаем предыдущие листья
@@ -350,7 +350,7 @@ function createLeaves() {
         }, (delay + duration) * 1000);
     }
 }
-
+*/
 // Создание магических частиц при загрузке
 function createMagicParticles() {
     setTimeout(() => {
